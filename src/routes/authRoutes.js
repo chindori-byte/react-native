@@ -1,0 +1,16 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const User = mongoose.model('User');
+const bodyParser = require('body-parser');
+
+
+const router = express.Router();
+
+router.post('/signup', async(req, res) =>{
+    const {email, password} = req.body;
+    const user = new User({email, password});
+    await user.save();
+res.send('you made a post request');
+});
+
+module.exports = router;
